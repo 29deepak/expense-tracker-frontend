@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: skyblue;
+        }
+        .submission-form{
+            max-width:500px;
+            margin:2rem auto;
+            border:2px solid #E74C3C;
+            padding:2rem;
+        }
+        label{
+            display: block;
+            text-transform: uppercase;
+        }
+        input{
+            width:100%;
+        }
+        button{
+            width:40%;
+        
+        }
+        button:hover{
+            color: #E74C3C;
+        }
+        #listofExpenses{
+            display:block;
+            border:2px solid;
+            text-align: center;
+            
+        }
+        li{
+            color:black
+        }
+    </style>
+</head>
+<body>
+    <h2>EXPENSE TRACKER</h2>
+    <form class="submission-form" onsubmit="addNewExpense(event)">
+        <label for="expenseamount">Choose expenseamount:</label>
+        <input type="number" name="expenseamount" required >
+        <label for="description">Choose description:</label>
+        <input type="text" name="description" required >
+        <label for="category">Choose a category</label>
+        <select id="category" name="category">
+            <option value="fuel">FUEL</option>
+            <option value="food">FOOD</option>
+            <option value="electricity">ELECTRICITY</option>
+            <option value="movie">MOVIE</option>
+
+        </select>
+        <button>Add Expense</button>
+
+    </form>
+    <ul id="listofExpenses"></ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="./index.js"></script>
+    
+</body>
+</html>
