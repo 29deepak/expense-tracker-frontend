@@ -32,6 +32,9 @@
         button:hover{
             color: #E74C3C;
         }
+        #rzp-button{
+            color:green;
+        }
         #listofExpenses{
             display:block;
             border:2px solid;
@@ -57,12 +60,23 @@
             <option value="fuel">FUEL</option>
             <option value="food">FOOD</option>
             <option value="electricity">ELECTRICITY</option>
-            <option value="movie">MOVIE</option>
+            <option value="shooping">SHOOPING</option>
+            <option value="gym">GYM</option>
+            <option value="hotel">HOTEL</option>
+            <option value="dance">DANCE</option>
+            <option value="servicing">SERVICING</option>
+            <option value="ebill">EBILL</option>
+            <option value="credit">CREDIT CARD BILL</option>
+            <option value="water">WATER BILL</option>
+            <option value="onlineshooping">ONLINE SHOOPING</option>
+            
 
         </select>
         <button>Add Expense</button>
 
     </form>
+    <button id="rzp-button">Buy Premium</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <ul id="listofExpenses"></ul>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <script src="./index.js"></script>

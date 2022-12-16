@@ -11,6 +11,7 @@ async function signup(e){
         console.log(response)
         const obj=response.data.message
         document.body.innerHTML+=obj
+        window.location.href="../login/login.html"
        })
     }
     catch(err){
