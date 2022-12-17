@@ -21,3 +21,6 @@ function login(e){
     })
     
 }
+function forgotpassword(){
+    window.location.href="../Forgotpassword/index.html"
+}
