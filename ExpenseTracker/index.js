@@ -1,3 +1,4 @@
+document.getElementById("downloadexpense").style.display="none";
 function addNewExpense(e){
     e.preventDefault()
     const expenseDetails={
@@ -37,6 +38,7 @@ function showLeaderboard(){
     }
     document.getElementById("message").appendChild(inputElement)
 }
+
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -49,6 +51,7 @@ function parseJwt (token) {
 function showPremiumusermessage(){
     document.getElementById('rzp-button').style.visibility="hidden";
     document.getElementById('message').innerHTML="you are a premium user";
+    document.getElementById("downloadexpense").style.display="inline";
 
 }
 window.addEventListener("DOMContentLoaded",()=>{
@@ -73,6 +76,23 @@ function addNewExpensetoUI(expense){
     ${expense.expenseamount} - ${expense.category} - ${expense.description}
     <button onClick='deleteExpense(event,${expense.id})'>Delete Expense</button>
     </li>`
+}
+function download(){
+    axios.get('http://localhost:4000/user/download', { headers: {"Authorization" : token} })
+    .then((response) => {
+        if(response.status === 201){
+            var a = document.createElement("a");
+            a.href = response.data.fileUrl;
+            a.download = 'myexpense.csv';
+            a.click();
+        } else {
+            throw new Error(response.data.message)
+        }
+
+    })
+    .catch((err) => {
+        showError(err)
+    });
 }
 function deleteExpense(e,expenseid){
     const token=localStorage.getItem('token')

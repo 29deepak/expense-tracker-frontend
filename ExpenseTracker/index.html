@@ -46,6 +46,10 @@
             text-transform:uppercase;
             display:block;
         }
+        #downloadexpense{
+            text-align: center;
+            width: fit-content;
+        }
     </style>
 </head>
 <body>
@@ -78,6 +82,7 @@
     <div id="message"></div>
     <div id="leaderboard"></div>
     <button id="rzp-button">Buy Premium</button>
+    <button onclick="download()" id="downloadexpense">Download File</button>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <ul id="listofExpenses"></ul>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>

@@ -5,6 +5,7 @@ async function signup(e){
         name:  e.target.name.value,
         email: e.target.email.value,
         password:e.target.password.value
+        
        }
        const response=await axios.post("http://localhost:4000/user/signup",signupDetails)
        .then(response=>{
