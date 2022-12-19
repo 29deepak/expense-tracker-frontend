@@ -1,4 +1,3 @@
-document.getElementById("downloadexpense").style.display="none";
 function addNewExpense(e){
     e.preventDefault()
     const expenseDetails={
@@ -38,7 +37,10 @@ function showLeaderboard(){
     }
     document.getElementById("message").appendChild(inputElement)
 }
+function showFileURl(filelink){
+    document.body.innerHTML +=`<a >${filelink}</a><br><a style="color:red">IF YOU WANT PREVIOUS  FILE COPY THE  URL</a>`
 
+}
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -51,7 +53,6 @@ function parseJwt (token) {
 function showPremiumusermessage(){
     document.getElementById('rzp-button').style.visibility="hidden";
     document.getElementById('message').innerHTML="you are a premium user";
-    document.getElementById("downloadexpense").style.display="inline";
 
 }
 window.addEventListener("DOMContentLoaded",()=>{
@@ -62,7 +63,9 @@ window.addEventListener("DOMContentLoaded",()=>{
     if(ispremiumuser){
         showPremiumusermessage()
         showLeaderboard()
+        
     }
+    
     axios.get('http://localhost:4000/expense/getexpenses',{headers:{"Authorization":token}}).then(response =>{
         response.data.expenses.forEach(expense=>{
             addNewExpensetoUI(expense)
@@ -78,20 +81,24 @@ function addNewExpensetoUI(expense){
     </li>`
 }
 function download(){
+    const token=localStorage.getItem('token');
     axios.get('http://localhost:4000/user/download', { headers: {"Authorization" : token} })
     .then((response) => {
-        if(response.status === 201){
+        console.log(response)
+        if(response.status === 200){
             var a = document.createElement("a");
-            a.href = response.data.fileUrl;
+            a.href = response.data.fileURl;
             a.download = 'myexpense.csv';
             a.click();
+            showFileURl(response.data.fileURl)
         } else {
             throw new Error(response.data.message)
+               
         }
 
     })
     .catch((err) => {
-        showError(err)
+        document.body.innerHTML+=`<div style="color:red;">${err}</div>`
     });
 }
 function deleteExpense(e,expenseid){
